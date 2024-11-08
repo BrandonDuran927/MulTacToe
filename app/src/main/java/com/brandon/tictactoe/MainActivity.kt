@@ -60,7 +60,8 @@ data class Box(
 
 @Composable
 fun PlayBoard(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    selectedBox: Box
 ) {
 
     val measurer = rememberTextMeasurer()
@@ -69,7 +70,7 @@ fun PlayBoard(
         fontSize = 22.sp
     )
     val boxSize = Size(width = 300f, height = 300f)
-//    val boxes by remember {  }
+    val boxes by remember {  }
 
 
     Canvas(
@@ -79,6 +80,7 @@ fun PlayBoard(
             .pointerInput(Unit) {
                 detectTapGestures { change ->
                     println("change X: ${change.x} \n change Y: ${change.y}")
+                    // TODO: Pass a function here that return a specific 'Box' and create a mutable selectedBox..
                 }
             }
             .background(Color.Green.copy(alpha = 0.3f))
